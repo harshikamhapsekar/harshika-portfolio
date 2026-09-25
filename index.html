@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Harshika Mhapsekar — Data Scientist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAF7F5;
+    --bg-wash: #F1E4E1;
+    --panel: #F3E8E6;
+    --panel-2: #F3E8E6;
+    --panel-3: #F3E8E6;
+    --ink: #33262A;
+    --muted: #7C6367;
+    --accent: #9C5A68;
+    --gold: #A98A54;
+    --border: #E2D2CE;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'Jost', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #241A1D; --bg-wash: #2F2226; --panel: #322528; --panel-2: #322528; --panel-3: #322528;
+      --ink: #EFE4E1; --muted: #B79398; --accent: #D19AA6; --gold: #C4A874; --border: #453437;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #241A1D; --bg-wash: #2F2226; --panel: #322528; --panel-2: #322528; --panel-3: #322528;
+    --ink: #EFE4E1; --muted: #B79398; --accent: #D19AA6; --gold: #C4A874; --border: #453437;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: env(safe-area-inset-top, 0px); }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); line-height: 1.7;
+    background-image: radial-gradient(ellipse 900px 500px at 85% -5%, var(--bg-wash), transparent 60%),
+                       radial-gradient(ellipse 700px 500px at -5% 40%, var(--bg-wash), transparent 55%);
+    background-attachment: fixed;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+
+  .theme-toggle {
+    position: fixed; top: calc(env(safe-area-inset-top, 0px) + 18px); right: 20px; z-index: 10;
+    background: var(--panel); border: 1px solid var(--border); color: var(--muted);
+    font-family: var(--sans); font-size: 12px; letter-spacing: 0.03em; padding: 8px 14px; border-radius: 4px; cursor: pointer;
+  }
+  .theme-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* delicate botanical divider, reused between sections */
+  .sprig { display: block; margin: 0 auto; color: var(--gold); opacity: 0.75; }
+
+  header.hero { padding: 100px 0 56px; text-align: left; }
+  .hero-sprig { margin-bottom: 22px; margin-left: 0; }
+  h1.name {
+    font-family: var(--serif); font-weight: 600; font-size: clamp(2.3rem, 7vw, 3.8rem); margin: 0 0 4px;
+    letter-spacing: -0.01em; line-height: 1.1;
+  }
+  .name-underline { width: 64px; height: 2px; background: var(--gold); margin: 18px 0 20px; border: none; }
+  .role { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: clamp(1.05rem, 2.6vw, 1.35rem); color: var(--accent); margin: 0 0 22px; }
+  .pitch { max-width: 56ch; margin: 0 0 34px; font-size: 1.02rem; color: var(--ink); }
+  .cta-row { display: flex; gap: 14px; flex-wrap: wrap; justify-content: flex-start; }
+  .btn {
+    font-family: var(--sans); font-size: 13.5px; letter-spacing: 0.03em; padding: 13px 28px; border-radius: 4px;
+    text-decoration: none; border: 1px solid var(--accent); transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .btn.primary { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px -8px var(--accent); }
+
+  section { padding: 52px 0; }
+  .section-head { text-align: left; margin-bottom: 36px; }
+  .section-head h2 { font-family: var(--serif); font-weight: 600; font-size: 1.7rem; margin: 0 0 12px; }
+  .section-head h2::after { content: ''; display: block; width: 40px; height: 2px; background: var(--gold); margin-top: 14px; }
+
+  .about-body { max-width: 62ch; margin: 0; font-size: 1.02rem; text-align: left; }
+  .about-body p { margin: 0 0 16px; }
+
+  .edu-card {
+    max-width: 560px; margin: 0; background: var(--panel); border: 1px solid var(--border);
+    border-left: 3px solid var(--accent); border-radius: 4px; padding: 30px 34px; text-align: left;
+  }
+  .edu-card h3 { font-family: var(--serif); font-weight: 600; font-size: 1.2rem; margin: 0 0 4px; }
+  .edu-meta { font-family: var(--serif); font-style: italic; color: var(--accent); font-size: 0.92rem; margin: 0 0 10px; }
+  .edu-detail { color: var(--muted); margin: 0; font-size: 0.94rem; }
+
+  .skill-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 30px 26px; }
+  .skill-group { text-align: left; }
+  .skill-group h3 { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 1rem; color: var(--accent); margin: 0 0 14px; }
+  .chip-row { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-start; }
+  .chip {
+    font-family: var(--sans); font-size: 12.5px; padding: 7px 15px; border-radius: 4px;
+    color: var(--ink); background: var(--panel); border: 1px solid var(--border);
+  }
+
+  .exp-list { max-width: 680px; margin: 0; position: relative; padding-left: 28px; }
+  .exp-list::before { content: ''; position: absolute; left: 5px; top: 8px; bottom: 8px; width: 1px; background: var(--border); }
+  .exp-item { position: relative; padding-bottom: 34px; }
+  .exp-item:last-child { padding-bottom: 0; }
+  .exp-item::before { content: ''; position: absolute; left: -28px; top: 6px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .exp-period { font-family: var(--serif); font-style: italic; color: var(--accent); font-size: 0.85rem; margin: 0 0 4px; }
+  .exp-role { font-weight: 600; font-size: 1.05rem; margin: 0 0 2px; font-family: var(--serif); }
+  .exp-org { color: var(--muted); font-size: 0.9rem; margin: 0 0 10px; }
+  .exp-item ul { margin: 0; padding-left: 18px; }
+  .exp-item li { margin-bottom: 5px; font-size: 0.95rem; }
+
+  .projects { columns: 2; column-gap: 22px; }
+  @media (max-width: 640px) { .projects { columns: 1; } }
+  .project {
+    break-inside: avoid; margin-bottom: 22px; padding: 26px 28px; border-radius: 4px;
+    background: var(--panel); border: 1px solid var(--border); border-left: 3px solid var(--gold);
+  }
+  .project h3 { font-family: var(--serif); font-weight: 600; margin: 0 0 8px; font-size: 1.08rem; }
+  .project .index { display: block; font-family: var(--serif); font-style: italic; color: var(--accent); font-size: 0.82rem; margin-bottom: 10px; }
+  .project p.desc { margin: 0; color: var(--ink); font-size: 0.95rem; }
+
+  .cert-list { max-width: 640px; margin: 0; display: flex; flex-direction: column; gap: 14px; }
+  .cert-row { text-align: left; }
+  .cert-row .cert-cat { display: block; font-family: var(--serif); font-style: italic; color: var(--accent); font-size: 0.88rem; margin-bottom: 4px; }
+  .cert-row .cert-vals { font-size: 0.95rem; color: var(--ink); }
+
+  .extra-chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-start; }
+  .extra-chips .chip { background: transparent; border-color: var(--gold); color: var(--ink); }
+
+  .contact-card {
+    max-width: 520px; margin: 0; text-align: left; background: var(--panel); border: 1px solid var(--border);
+    border-top: 3px solid var(--accent); border-radius: 4px; padding: 44px 40px;
+  }
+  .contact-card h2 { font-family: var(--serif); font-weight: 600; margin: 0 0 10px; font-size: 1.6rem; }
+  .contact-card p { color: var(--muted); max-width: 42ch; margin: 0 0 26px; font-size: 0.95rem; }
+  .contact-list { display: flex; flex-direction: column; gap: 12px; font-size: 0.97rem; }
+  .contact-list a { text-decoration: none; }
+  .contact-list a:hover { color: var(--accent); }
+  .contact-list .label { display: block; font-family: var(--serif); font-style: italic; color: var(--accent); font-size: 0.82rem; margin-bottom: 2px; }
+
+  footer {
+    padding: 40px 0 calc(40px + env(safe-area-inset-bottom, 0px)); text-align: left;
+    font-family: var(--serif); font-style: italic; font-size: 13px; color: var(--muted);
+  }
+
+  @media (max-width: 600px) {
+    header.hero { padding: 84px 0 44px; }
+    .edu-card, .contact-card { padding: 26px 22px; }
+    .project { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light and dark theme">mode ⋅ auto</button>
+
+<div class="wrap">
+
+  <header class="hero">
+    <svg class="sprig hero-sprig" width="72" height="10" viewBox="0 0 72 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M2 5 H30" stroke="currentColor" stroke-width="1"/>
+      <path d="M42 5 H70" stroke="currentColor" stroke-width="1"/>
+      <circle cx="36" cy="5" r="2.5" fill="currentColor"/>
+    </svg>
+    <h1 class="name">Harshika Mhapsekar</h1>
+    <hr class="name-underline">
+    
+    <p class="pitch">Detail-oriented and analytically driven, with a strong foundation in statistics, machine learning, and data pipelines. I turn messy, high-volume datasets into predictive models and dashboard-ready insight.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="#experience">View experience</a>
+      <a class="btn" href="#contact">Get in touch</a>
+    </div>
+  </header>
+
+  <section id="about">
+    <div class="section-head">
+      <h2>About</h2>
+    </div>
+    <div class="about-body">
+      <p>I'm Harshika — an Engineering Graduate from Sardar Patel College of Engineering, Mumbai. Over the past two years I've built ETL pipelines for demand forecasting at SPJIMR, debugged and validated data at scale for EducoBot and Jacobs Solutions, and worked on data analytics at ISRO. Alongside that, I've applied machine learning to problems ranging from credit risk modeling to aerospace drag optimization.What I enjoy most is the moment a messy dataset becomes a model people can actually trust — the debugging, the validation checks, the edge cases nobody thought of. I work in Python and SQL day to day, and I'm comfortable moving between data engineering and applied ML depending on what the problem needs.</p>
+      
+  </section>
+
+  <section id="education">
+    <div class="section-head">
+      <h2>Education</h2>
+    </div>
+    <div class="edu-card">
+      <h3>Sardar Patel College of Engineering, Mumbai</h3>
+      <p class="edu-meta">2022 – 2026</p>
+      <p class="edu-detail">B.Tech in Mechanical Engineering — CGPA 8.63<br>Electives: Programming (96%), Computer Architecture, AI and ML (91%)</p>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-head">
+      <h2>Skills</h2>
+    </div>
+    <div class="skill-groups">
+      <div class="skill-group">
+        <h3>Programming</h3>
+        <div class="chip-row"><span class="chip">Python</span><span class="chip">SQL</span><span class="chip">Java</span><span class="chip">C++</span></div>
+      </div>
+      <div class="skill-group">
+        <h3>Data engineering</h3>
+        <div class="chip-row"><span class="chip">Data pipelines</span><span class="chip">ETL / ELT</span><span class="chip">Feature extraction</span><span class="chip">Workflow automation</span></div>
+      </div>
+      <div class="skill-group">
+        <h3>Databases &amp; analytics</h3>
+        <div class="chip-row"><span class="chip">Relational DBs</span><span class="chip">NoSQL</span><span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">Power BI</span><span class="chip">EDA</span></div>
+      </div>
+      <div class="skill-group">
+        <h3>APIs &amp; development</h3>
+        <div class="chip-row"><span class="chip">REST APIs</span><span class="chip">HTTP / JSON</span><span class="chip">API testing</span><span class="chip">DSA</span></div>
+      </div>
+      <div class="skill-group">
+        <h3>Cloud &amp; tools</h3>
+        <div class="chip-row"><span class="chip">AWS</span><span class="chip">GCP</span><span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">Jira</span></div>
+      </div>
+      <div class="skill-group">
+        <h3>Machine learning</h3>
+        <div class="chip-row"><span class="chip">Scikit-learn</span><span class="chip">TensorFlow</span><span class="chip">PyTorch</span><span class="chip">Predictive modeling</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="section-head">
+      <h2>Experience</h2>
+    </div>
+    <div class="exp-list">
+
+      <div class="exp-item">
+        <p class="exp-period">Dec 2025 – Jun 2026</p>
+        <p class="exp-role">Data Science Intern</p>
+        <p class="exp-org">SP Jain Institute of Management and Research (SPJIMR)</p>
+        <ul>
+          <li>Built Python-based data pipelines and ETL workflows for large-scale hierarchical demand forecasting using the M5 Walmart dataset.</li>
+          <li>Designed, evaluated, and debugged pipelines across multiple architectures, including transformation, validation, and quality checks.</li>
+          <li>Improved pipeline accuracy and consistency to support inventory planning and operational decisions.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <p class="exp-period">April 2026</p>
+        <p class="exp-role">Software Developer Intern</p>
+        <p class="exp-org">EducoBot</p>
+        <ul>
+          <li>Designed and executed functional and API test cases in Python and JavaScript, identifying data discrepancies across APIs and dashboards.</li>
+          <li>Investigated data and pipeline issues via debugging and root-cause analysis with the dev team.</li>
+          <li>Documented data sources and schemas to support smoother deployments.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <p class="exp-period">Jun – Jul 2025</p>
+        <p class="exp-role">Intern</p>
+        <p class="exp-org">Jacobs Solutions Pvt. Ltd.</p>
+        <ul>
+          <li>Built Python-based data pipelines and automation to streamline engineering workflows, reducing manual effort.</li>
+          <li>Investigated data bottlenecks and implemented scalable automation to improve reliability.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <p class="exp-period">Oct – Nov 2024</p>
+        <p class="exp-role">Data Analytics Intern</p>
+        <p class="exp-org">ISRO (Space Agnirva)</p>
+        <ul>
+          <li>Analyzed high-volume datasets in Python and SQL, writing optimized queries to extract, transform, and reconcile data.</li>
+          <li>Built data validation and anomaly-detection checks, translating findings into dashboard-ready insight.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-head">
+      <h2>Projects</h2>
+    </div>
+    <div class="projects">
+
+      <div class="project">
+        <span class="index">Python · Pandas · REST</span>
+        <h3>Feature extraction &amp; communication analytics — Moxie Beauty</h3>
+        <p class="desc">Built a scalable Python pipeline using REST APIs, Pandas, and NumPy to extract and process large-scale YouTube content data, converting raw data into structured business insight.</p>
+      </div>
+
+      <div class="project">
+        <span class="index">GenAI · Predictive modeling</span>
+        <h3>AI-powered credit delinquency risk — TATA GenAI Simulation</h3>
+        <p class="desc">Used generative AI tools for exploratory data analysis and to identify credit-risk indicators, developing a predictive workflow under responsible-AI practices.</p>
+      </div>
+
+      <div class="project">
+        <span class="index">FICO scores · Dynamic programming</span>
+        <h3>Credit default risk modeling — J.P. Morgan Chase Quantitative Research</h3>
+        <p class="desc">Estimated probability of default across a loan portfolio using FICO scores, applying dynamic programming to bucket continuous scores for improved risk classification.</p>
+      </div>
+
+      <div class="project">
+        <span class="index">Random Forest · CFD</span>
+        <h3>ML-based hypersonic nose cone optimization</h3>
+        <p class="desc">Built a Random Forest model integrating shock-expansion and Prandtl-Meyer theory with evolutionary algorithms, cutting computation cost by 65% and improving drag performance by 38.2%.</p>
+      </div>
+
+      <div class="project">
+        <span class="index">CNN · U-Net · Springer</span>
+        <h3>Neural augmented optical correction</h3>
+        <p class="desc">Diagnosed optical distortion in semiconductor imaging and built a hybrid deep-learning pipeline with CNNs, U-Nets, and SRAF-aware Richardson-Lucy deconvolution.</p>
+      </div>
+
+      <div class="project">
+        <span class="index">DSP · Spectral analysis</span>
+        <h3>Vibration-based fault diagnosis in industrial machinery</h3>
+        <p class="desc">Diagnosed early-stage machinery faults from vibration signals using digital signal processing and feature extraction, enabling predictive maintenance.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="certifications">
+    <div class="section-head">
+      <h2>Certifications</h2>
+    </div>
+    <div class="cert-list">
+      <div class="cert-row"><span class="cert-cat">Data</span><span class="cert-vals">Database Systems, Advanced NoSQL, Big Data Processing</span></div>
+      <div class="cert-row"><span class="cert-cat">Python &amp; analytics</span><span class="cert-vals">Python for Data Visualization, Predictive Analytics</span></div>
+      <div class="cert-row"><span class="cert-cat">ML &amp; AI</span><span class="cert-vals">Machine Learning with Python, Deep Learning, Explainable AI, Predictive Modeling</span></div>
+      <div class="cert-row"><span class="cert-cat">Visualization</span><span class="cert-vals">Power BI</span></div>
+    </div>
+  </section>
+
+  <section id="extracurricular">
+    <div class="section-head">
+      <h2>Beyond the desk</h2>
+    </div>
+    <div class="extra-chips">
+      <span class="chip">Coding Head, SPARK Robotics Club</span>
+      <span class="chip">Instructor, C++ Workshop (IEEE SPCE)</span>
+      <span class="chip">Literary Secretary, Student Council 2025</span>
+      <span class="chip">Director General, Diplomat MUN 2025</span>
+      <span class="chip">Head, SPLASH Dance Club</span>
+      <span class="chip">Mentor, TEDxSPCE 2025</span>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="contact-card">
+      <h2>Let's talk</h2>
+      <p>Open to work!</p>
+      <div class="contact-list">
+        <div><span class="label">Email</span><a href="mailto:harshika.mhapsekar@gmail.com">harshika.mhapsekar@gmail.com</a></div>
+        <div><span class="label">LinkedIn</span><a href="https://linkedin.com/in/harshikamhapsekar" target="_blank" rel="noopener">linkedin.com/in/harshikamhapsekar</a></div>
+        <div><span class="label">Location</span><span>Mumbai, India</span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>Mumbai</footer>
+
+</div>
+
+<script>
+  (function () {
+    var btn = document.getElementById('themeToggle');
+    var order = ['auto', 'light', 'dark'];
+    var current = 'auto';
+    function apply(mode) {
+      if (mode === 'auto') { document.documentElement.removeAttribute('data-theme'); }
+      else { document.documentElement.setAttribute('data-theme', mode); }
+      btn.textContent = 'mode ⋅ ' + mode;
+    }
+    btn.addEventListener('click', function () {
+      current = order[(order.indexOf(current) + 1) % order.length];
+      apply(current);
+    });
+    apply(current);
+  })();
+</script>
+
+</body>
+</html>
